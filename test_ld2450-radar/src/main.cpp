@@ -236,7 +236,7 @@ void loop() {
             }
         }
         lastTargets[i] = nowTargets[i]; // 更新上一帧的目标信息
-      }
+      }    
 
       // 打印统计结果
       Serial.print("从左到右的人数: ");
@@ -270,14 +270,15 @@ void loop() {
         Serial.println(readCountFromEEPROM(countTimeAddress));
       }
     }
-    else {
-      digitalWrite(ledPin, LOW);
-      delay(1);
-    }
+
 
   }
+  else {
+    digitalWrite(ledPin, LOW);
+    delay(1);
+  }
 
-  else if (Serial.available() > 0) { // 恢复出厂设置
+  if (Serial.available() > 0) { // 恢复出厂设置
         digitalWrite(ledPin, HIGH);
         // 如果串口有数据可读，读取字符串直到遇到换行符
         String command = Serial.readStringUntil('\n');
